@@ -36,3 +36,7 @@ class MealsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Statuses
         fields = ('id', 'name',)
+
+
+
+
