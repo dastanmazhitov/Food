@@ -132,10 +132,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'conduit.apps.core.exceptions.core_exception_handler',
+    'EXCEPTION_HANDLER': 'user.core.exceptions.core_exception_handler',
     'NON_FIELD_ERRORS_KEY': 'error',
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'conduit.apps.authentication.backends.JWTAuthentication',
+        'users.backends.JWTAuthentication',
     ),
 }
