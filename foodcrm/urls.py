@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^checks/(?P<pk>[0-9]+)/$', views.ChecksDetailView.as_view()),
     url(r'^mealstoorders/(?P<pk>[0-9]+)/$', views.MealsToOrdersDetailView.as_view()),
     url(r'^users/', include('users.urls', namespace='authentication')),
+    #url(r'^role/', include('', namespace='role'))
 ]
