@@ -9,6 +9,13 @@ from django.contrib.auth.models import (
 from django.db import models
 
 
+class Role(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password=None):
         if username is None:
@@ -17,7 +24,7 @@ class UserManager(BaseUserManager):
         if email is None:
             raise TypeError('Users must an email address.')
 
-        user = self.model(username, email=self.normalize_email(email))
+        user = self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
         user.save()
 
@@ -36,8 +43,12 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True)
+    name = models.CharField(db_index=True, blank=True, max_length=100, default='')
+    surname = models.CharField(db_index=True, blank=True, max_length=255)
     username = models.CharField(db_index=True, max_length=255, unique=True)
     email = models.EmailField(db_index=True, unique=True)
+    phone = models.CharField(max_length=100, default='')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -70,3 +81,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token.decode('utf-8')
+
+
+
