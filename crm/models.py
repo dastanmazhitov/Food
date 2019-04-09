@@ -69,8 +69,8 @@ class MealsToOrders(models.Model):
 
 
 class Checks(models.Model):
-    orderid=models.ForeignKey(Orders, on_delete=models.CASCADE, null=True)
+    orderid = models.ForeignKey(Orders, on_delete=models.CASCADE, null=True)
     percentage = models.ForeignKey(ServicePercentage, on_delete=models.CASCADE, null=True)
     date = models.DateTimeField(blank=True, null=True)
     mealsid = models.ForeignKey(Meals, on_delete=models.CASCADE, null=True)
-    totalsum = models.CharField(max_length=100)
+    totalsum = models.CharField(max_length=100, null=True, blank=True)
