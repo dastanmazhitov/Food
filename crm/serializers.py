@@ -51,7 +51,7 @@ class OrdersSerializer(serializers.ModelSerializer):
 
 
 class MealsToOrdersSerializer(serializers.ModelSerializer):
-    class Meta:
+    class Meta: 
         model = MealsToOrders
         fields = ('id', 'count', 'orderid', 'mealsid',)
 
@@ -69,4 +69,3 @@ class ChecksSerializer(serializers.ModelSerializer):
     class Meta:
         model = Checks
         fields = ('id', 'orderid', 'percentage', 'date', 'mealsid', 'totalsum',)
-
